@@ -29,3 +29,10 @@ This means you can use rich text formatting in your asset documentation!
 2. Paste `https://github.com/Zetaphor/sd-library-notes` into the url box.
 3. Click Install
 4. from the Installed tab click apply and restart.
+
+
+TODO:
+[ ] Refresh button
+[ ] Image previews
+[ ] Code cleanup
+[ ] In-UI editing/saving/creation
