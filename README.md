@@ -33,6 +33,9 @@ This means you can use rich text formatting in your asset documentation!
 
 TODO:
 [ ] Refresh button
+
 [ ] Image previews
+
 [ ] Code cleanup
+
 [ ] In-UI editing/saving/creation
