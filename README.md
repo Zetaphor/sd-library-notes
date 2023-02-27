@@ -30,6 +30,10 @@ This means you can use rich text formatting in your asset documentation!
 3. Click Install
 4. from the Installed tab click apply and restart.
 
+This screenshot was from development and so it doesn't show the markdown functionality:
+![image](https://user-images.githubusercontent.com/3112763/221681151-0104a366-27cc-41a0-a044-91e012d60902.png)
+
+
 
 TODO:
 
@@ -38,3 +42,4 @@ TODO:
 - [ ] Move to right side of UI, how is Preset Manager doing this?
 - [ ] Code cleanup
 - [ ] In-UI editing/saving/creation
+
