@@ -35,5 +35,6 @@ TODO:
 
 - [ ] Refresh button
 - [ ] Image previews
+- [ ] Move to right side of UI, how is Preset Manager doing this?
 - [ ] Code cleanup
 - [ ] In-UI editing/saving/creation
