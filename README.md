@@ -30,9 +30,7 @@ This means you can use rich text formatting in your asset documentation!
 3. Click Install
 4. from the Installed tab click apply and restart.
 
-This screenshot was from development and so it doesn't show the markdown functionality:
-![image](https://user-images.githubusercontent.com/3112763/221681151-0104a366-27cc-41a0-a044-91e012d60902.png)
-
+![image](https://user-images.githubusercontent.com/3112763/222820664-edaebedd-09a4-4290-8354-f3141c701a13.png)
 
 
 TODO:
