@@ -30,15 +30,13 @@ class LibraryNotes(scripts.Script):
                     file_path = os.path.join(root, file)
 
                     file_name, file_ext = os.path.splitext(file)
-                    if os.path.isfile(os.path.join(root, file_name + '.md')):
-                        file_name + '.md'
 
                     found_file = False
                     info_path = ""
                     if file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.txt')):
                         found_file = True
                         info_path = os.path.join(root, file_name + '.txt')
-                    elif os.path.isfile(os.path.join(root, file_name + '.md')):
+                    elif file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.md')):
                         found_file = True
                         info_path = os.path.join(root, file_name + '.md')
 
@@ -47,6 +45,7 @@ class LibraryNotes(scripts.Script):
                             'models/Stable-diffusion\\', '')
                         formatted_name = display_name.replace("\\\\", "\\")
 
+                        print('formatted_name', formatted_name)
                         LibraryNotes.checkpoint_list.append({
                             'name': formatted_name,
                             'filename': info_path
@@ -67,7 +66,7 @@ class LibraryNotes(scripts.Script):
                     if file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.txt')):
                         found_file = True
                         info_path = os.path.join(root, file_name + '.txt')
-                    elif os.path.isfile(os.path.join(root, file_name + '.md')):
+                    elif file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.md')):
                         found_file = True
                         info_path = os.path.join(root, file_name + '.md')
 
@@ -96,7 +95,7 @@ class LibraryNotes(scripts.Script):
                     if file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.txt')):
                         found_file = True
                         info_path = os.path.join(root, file_name + '.txt')
-                    elif os.path.isfile(os.path.join(root, file_name + '.md')):
+                    elif file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.md')):
                         found_file = True
                         info_path = os.path.join(root, file_name + '.md')
 
@@ -125,7 +124,7 @@ class LibraryNotes(scripts.Script):
                     if file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.txt')):
                         found_file = True
                         info_path = os.path.join(root, file_name + '.txt')
-                    elif os.path.isfile(os.path.join(root, file_name + '.md')):
+                    elif file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.md')):
                         found_file = True
                         info_path = os.path.join(root, file_name + '.md')
 
@@ -154,7 +153,7 @@ class LibraryNotes(scripts.Script):
                     if file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.txt')):
                         found_file = True
                         info_path = os.path.join(root, file_name + '.txt')
-                    elif os.path.isfile(os.path.join(root, file_name + '.md')):
+                    elif file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.md')):
                         found_file = True
                         info_path = os.path.join(root, file_name + '.md')
 
