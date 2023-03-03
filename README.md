@@ -38,7 +38,7 @@ TODO:
 - [ ] Fix paths on Unix systems
 - [ ] Refresh button
 - [ ] Image previews
-- [ ] Move to right side of UI, how is Preset Manager doing this?
+- [ ] Move to right side of UI, make an optional setting?
 - [ ] Code cleanup
 - [ ] In-UI editing/saving/creation
 
