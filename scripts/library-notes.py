@@ -16,156 +16,65 @@ class LibraryNotes(scripts.Script):
     hypernetwork_list = []
     lora_list = []
 
+    checkpoint_path = 'models/Stable-diffusion'
+    vae_path = 'models/VAE'
+    embedding_path = 'embeddings'
+    hypernetwork_path = 'models/hypernetworks'
+    lora_path = 'models/Lora'
+
     def title(self):
         return "Library Notes"
 
     def show(self, is_img2img):
         return scripts.AlwaysVisible
 
+    def pull_note_list(self, dir_path, *extension_list):
+        note_list = []
+        extension_list = extension_list[0]
+
+        if os.path.exists(dir_path):
+            for root, dirs, files in os.walk(dir_path):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    file_name, file_ext = os.path.splitext(file)
+                    if os.path.isfile(os.path.join(root, file_name + '.md')):
+                        file_name + '.md'
+
+                    found_file = False
+                    info_path = ""
+
+                    if file_ext in extension_list:
+                        if os.path.isfile(os.path.join(root, file_name + '.txt')):
+                            found_file = True
+                            info_path = os.path.join(root, file_name + '.txt')
+                        elif os.path.isfile(os.path.join(root, file_name + '.md')):
+                            found_file = True
+                            info_path = os.path.join(root, file_name + '.md')
+
+                    if found_file:
+                        # Should probably be something like:
+                        # formatted_name = Path(file_path).relative_to(dir_path)
+                        display_name = file_path.replace(
+                            dir_path + '\\', '')
+                        formatted_name = display_name.replace("\\\\", "\\")
+
+                        note_list.append({
+                            'name': formatted_name,
+                            'filename': info_path
+                        })
+        return note_list
+
     def loadLibraryNotes(self, *args, **kwargs):
-        if os.path.exists('models/Stable-diffusion'):
-            extension_list = ['.safetensors', '.ckpt']
-            for root, dirs, files in os.walk('models/Stable-diffusion'):
-                for file in files:
-                    file_path = os.path.join(root, file)
-
-                    file_name, file_ext = os.path.splitext(file)
-
-                    found_file = False
-                    info_path = ""
-                    if file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.txt')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.txt')
-                    elif file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.md')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.md')
-
-                    if found_file:
-                        display_name = file_path.replace(
-                            'models/Stable-diffusion\\', '')
-                        formatted_name = display_name.replace("\\\\", "\\")
-
-                        print('formatted_name', formatted_name)
-                        LibraryNotes.checkpoint_list.append({
-                            'name': formatted_name,
-                            'filename': info_path
-                        })
-
-        if os.path.exists('models/hypernetworks'):
-            extension_list = ['.pt']
-            for root, dirs, files in os.walk('models/hypernetworks'):
-                for file in files:
-                    file_path = os.path.join(root, file)
-
-                    file_name, file_ext = os.path.splitext(file)
-                    if os.path.isfile(os.path.join(root, file_name + '.md')):
-                        file_name + '.md'
-
-                    found_file = False
-                    info_path = ""
-                    if file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.txt')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.txt')
-                    elif file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.md')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.md')
-
-                    if found_file:
-                        display_name = file_path.replace(
-                            'models/hypernetworks\\', '')
-                        formatted_name = display_name.replace("\\\\", "\\")
-
-                        LibraryNotes.hypernetwork_list.append({
-                            'name': formatted_name,
-                            'filename': info_path
-                        })
-
-        if os.path.exists('models/Lora'):
-            extension_list = ['.safetensors', '.pt']
-            for root, dirs, files in os.walk('models/Lora'):
-                for file in files:
-                    file_path = os.path.join(root, file)
-
-                    file_name, file_ext = os.path.splitext(file)
-                    if os.path.isfile(os.path.join(root, file_name + '.md')):
-                        file_name + '.md'
-
-                    found_file = False
-                    info_path = ""
-                    if file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.txt')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.txt')
-                    elif file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.md')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.md')
-
-                    if found_file:
-                        display_name = file_path.replace(
-                            'models/Lora\\', '')
-                        formatted_name = display_name.replace("\\\\", "\\")
-
-                        LibraryNotes.lora_list.append({
-                            'name': formatted_name,
-                            'filename': info_path
-                        })
-
-        if os.path.exists('embeddings'):
-            extension_list = ['.bin', '.pt']
-            for root, dirs, files in os.walk('embeddings'):
-                for file in files:
-                    file_path = os.path.join(root, file)
-
-                    file_name, file_ext = os.path.splitext(file)
-                    if os.path.isfile(os.path.join(root, file_name + '.md')):
-                        file_name + '.md'
-
-                    found_file = False
-                    info_path = ""
-                    if file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.txt')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.txt')
-                    elif file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.md')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.md')
-
-                    if found_file:
-                        display_name = file_path.replace(
-                            'embeddings\\', '')
-                        formatted_name = display_name.replace("\\\\", "\\")
-
-                        LibraryNotes.embedding_list.append({
-                            'name': formatted_name,
-                            'filename': info_path
-                        })
-
-        if os.path.exists('models/VAE'):
-            extension_list = ['.bin', '.pt']
-            for root, dirs, files in os.walk('models/VAE'):
-                for file in files:
-                    file_path = os.path.join(root, file)
-
-                    file_name, file_ext = os.path.splitext(file)
-                    if os.path.isfile(os.path.join(root, file_name + '.md')):
-                        file_name + '.md'
-
-                    found_file = False
-                    info_path = ""
-                    if file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.txt')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.txt')
-                    elif file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.md')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.md')
-
-                    if found_file:
-                        display_name = file_path.replace(
-                            'models/VAE\\', '')
-                        formatted_name = display_name.replace("\\\\", "\\")
-
-                        LibraryNotes.vae_list.append({
-                            'name': formatted_name,
-                            'filename': info_path
-                        })
+        LibraryNotes.checkpoint_list = self.pull_note_list(
+            LibraryNotes.checkpoint_path, ['.safetensors', '.ckpt'])
+        LibraryNotes.hypernetwork_list = self.pull_note_list(
+            LibraryNotes.hypernetwork_path, ['.pt'])
+        LibraryNotes.lora_list = self.pull_note_list(
+            LibraryNotes.lora_path, ['.safetensors', '.pt'])
+        LibraryNotes.embedding_list = self.pull_note_list(
+            LibraryNotes.embedding_path, ['.bin', '.pt'])
+        LibraryNotes.vae_list = self.pull_note_list(
+            LibraryNotes.vae_path, ['.bin', '.pt'])
 
         # print('VAE', self.vae_list, '\n\n')
         # print('TIs', self.embedding_list, '\n\n')
