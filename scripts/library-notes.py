@@ -35,12 +35,13 @@ class LibraryNotes(scripts.Script):
 
                     found_file = False
                     info_path = ""
-                    if file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.txt')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.txt')
-                    elif os.path.isfile(os.path.join(root, file_name + '.md')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.md')
+                    if file_ext in extension_list:
+                        if os.path.isfile(os.path.join(root, file_name + '.txt')):
+                            found_file = True
+                            info_path = os.path.join(root, file_name + '.txt')
+                        elif os.path.isfile(os.path.join(root, file_name + '.md')):
+                            found_file = True
+                            info_path = os.path.join(root, file_name + '.md')
 
                     if found_file:
                         display_name = file_path.replace(
@@ -64,12 +65,13 @@ class LibraryNotes(scripts.Script):
 
                     found_file = False
                     info_path = ""
-                    if file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.txt')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.txt')
-                    elif os.path.isfile(os.path.join(root, file_name + '.md')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.md')
+                    if file_ext in extension_list:
+                        if os.path.isfile(os.path.join(root, file_name + '.txt')):
+                            found_file = True
+                            info_path = os.path.join(root, file_name + '.txt')
+                        elif os.path.isfile(os.path.join(root, file_name + '.md')):
+                            found_file = True
+                            info_path = os.path.join(root, file_name + '.md')
 
                     if found_file:
                         display_name = file_path.replace(
@@ -93,12 +95,13 @@ class LibraryNotes(scripts.Script):
 
                     found_file = False
                     info_path = ""
-                    if file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.txt')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.txt')
-                    elif os.path.isfile(os.path.join(root, file_name + '.md')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.md')
+                    if file_ext in extension_list:
+                        if os.path.isfile(os.path.join(root, file_name + '.txt')):
+                            found_file = True
+                            info_path = os.path.join(root, file_name + '.txt')
+                        elif os.path.isfile(os.path.join(root, file_name + '.md')):
+                            found_file = True
+                            info_path = os.path.join(root, file_name + '.md')
 
                     if found_file:
                         display_name = file_path.replace(
@@ -122,12 +125,13 @@ class LibraryNotes(scripts.Script):
 
                     found_file = False
                     info_path = ""
-                    if file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.txt')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.txt')
-                    elif os.path.isfile(os.path.join(root, file_name + '.md')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.md')
+                    if file_ext in extension_list:
+                        if os.path.isfile(os.path.join(root, file_name + '.txt')):
+                            found_file = True
+                            info_path = os.path.join(root, file_name + '.txt')
+                        elif os.path.isfile(os.path.join(root, file_name + '.md')):
+                            found_file = True
+                            info_path = os.path.join(root, file_name + '.md')
 
                     if found_file:
                         display_name = file_path.replace(
@@ -151,12 +155,13 @@ class LibraryNotes(scripts.Script):
 
                     found_file = False
                     info_path = ""
-                    if file_ext in extension_list and os.path.isfile(os.path.join(root, file_name + '.txt')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.txt')
-                    elif os.path.isfile(os.path.join(root, file_name + '.md')):
-                        found_file = True
-                        info_path = os.path.join(root, file_name + '.md')
+                    if file_ext in extension_list:
+                        if os.path.isfile(os.path.join(root, file_name + '.txt')):
+                            found_file = True
+                            info_path = os.path.join(root, file_name + '.txt')
+                        elif os.path.isfile(os.path.join(root, file_name + '.md')):
+                            found_file = True
+                            info_path = os.path.join(root, file_name + '.md')
 
                     if found_file:
                         display_name = file_path.replace(
