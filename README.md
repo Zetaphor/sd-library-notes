@@ -37,6 +37,7 @@ This screenshot was from development and so it doesn't show the markdown functio
 
 TODO:
 
+- [ ] Fix paths on Unix systems
 - [ ] Refresh button
 - [ ] Image previews
 - [ ] Move to right side of UI, how is Preset Manager doing this?
