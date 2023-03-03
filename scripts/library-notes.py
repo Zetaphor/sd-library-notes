@@ -90,6 +90,9 @@ class LibraryNotes(scripts.Script):
 
     def ui(self, is_img2img):
         self.loadLibraryNotes()
+        self.add_ui_components()
+
+    def add_ui_components(self, *args, **kwargs):
         with gr.Accordion(label="Library Notes", open=False, elem_id=f"{'txt2img' if self.is_txt2img else 'img2img'}_library_notes_accordion"):
             with gr.Tab(label="Textual Inversions"):
                 with gr.Row():
@@ -162,6 +165,11 @@ class LibraryNotes(scripts.Script):
                   \n\n Any content loaded from the notes file will be rendered with full markdown. \
                   \nThis means you can use rich text formatting in your asset documentation!\
                 ")
+
+    def after_component(self, component, **kwargs):
+        ele = kwargs.get("elem_id")
+        # if ele == "txt2img_generation_info_button" or ele == "img2img_generation_info_button":
+        # self.add_ui_components(self)
 
     def show_embedding_info(self, filename):
         output_text = ""
