@@ -75,7 +75,7 @@ class LibraryNotes(scripts.Script):
         LibraryNotes.embedding_list = self.pull_note_list(
             LibraryNotes.embedding_path, ['.bin', '.pt'])
         LibraryNotes.vae_list = self.pull_note_list(
-            LibraryNotes.vae_path, ['.bin', '.pt'])
+            LibraryNotes.vae_path, ['.bin', '.pt', '.ckpt', '.safetensors'])
 
         # print('VAE', self.vae_list, '\n\n')
         # print('TIs', self.embedding_list, '\n\n')
