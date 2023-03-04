@@ -53,14 +53,14 @@ class LibraryNotes(scripts.Script):
                             info_path = os.path.join(root, file_name + '.md')
 
                     if found_file:
-                        formatted_name = Path(file_path).relative_to(dir_path)
-                        # formatted_name = ""
-                        # if platform.system() == 'Windows':
-                        #     formatted_name = file_path.replace(
-                        #         base_dir + 'models/Stable-diffusion\\', '')
-                        # else:
-                        #     formatted_name = file_path.replace(
-                        #         base_dir + 'models/Stable-diffusion/', '')
+                        # formatted_name = Path(file_path).relative_to(dir_path)
+                        formatted_name = ""
+                        if platform.system() == 'Windows':
+                            formatted_name = file_path.replace(
+                                base_dir + 'models/Stable-diffusion\\', '')
+                        else:
+                            formatted_name = file_path.replace(
+                                base_dir + 'models/Stable-diffusion/', '')
 
                         note_list.append({
                             'name': formatted_name,
