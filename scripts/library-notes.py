@@ -62,6 +62,7 @@ class LibraryNotes(scripts.Script):
                             'name': formatted_name,
                             'filename': info_path
                         })
+        note_list = sorted(note_list, key=lambda x: x['name'])
         return note_list
 
     def loadLibraryNotes(self, *args, **kwargs):
