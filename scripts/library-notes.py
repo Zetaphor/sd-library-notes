@@ -1,5 +1,6 @@
 import contextlib
 from pathlib import Path
+import platform
 import gradio as gr
 import modules.scripts as scripts
 import os
@@ -52,11 +53,14 @@ class LibraryNotes(scripts.Script):
                             info_path = os.path.join(root, file_name + '.md')
 
                     if found_file:
-                        # Should probably be something like:
-                        # formatted_name = Path(file_path).relative_to(dir_path)
-                        display_name = file_path.replace(
-                            dir_path + '\\', '')
-                        formatted_name = display_name.replace("\\\\", "\\")
+                        formatted_name = Path(file_path).relative_to(dir_path)
+                        # formatted_name = ""
+                        # if platform.system() == 'Windows':
+                        #     formatted_name = file_path.replace(
+                        #         base_dir + 'models/Stable-diffusion\\', '')
+                        # else:
+                        #     formatted_name = file_path.replace(
+                        #         base_dir + 'models/Stable-diffusion/', '')
 
                         note_list.append({
                             'name': formatted_name,

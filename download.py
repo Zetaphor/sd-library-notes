@@ -1,5 +1,6 @@
 import hashlib
 import os
+import platform
 import requests
 import json
 import html2text
@@ -19,6 +20,13 @@ hypernetwork_needing_hash = []
 lora_needing_hash = []
 
 base_dir = 'C:\\Users\\zetap\\stable-diffusion-webui\\'
+
+
+if platform.system() == 'Windows':
+    print('Operating system is Windows')
+else:
+    print('Operating system is not Windows')
+    base_dir = '/mnt/c/Users/zetap/stable-diffusion-webui/'
 
 
 def loadAssets():
@@ -44,9 +52,13 @@ def loadAssets():
                     found_file = True
                     info_path = os.path.join(root, file_name + '.md')
 
-                display_name = file_path.replace(
-                    base_dir + 'models/Stable-diffusion\\', '')
-                formatted_name = display_name.replace("\\\\", "\\")
+                formatted_name = ""
+                if platform.system() == 'Windows':
+                    formatted_name = file_path.replace(
+                        base_dir + 'models/Stable-diffusion\\', '')
+                else:
+                    formatted_name = file_path.replace(
+                        base_dir + 'models/Stable-diffusion/', '')
 
                 if not found_file:
                     checkpoint_needing_hash.append({
@@ -83,9 +95,13 @@ def loadAssets():
                     found_file = True
                     info_path = os.path.join(root, file_name + '.md')
 
-                display_name = file_path.replace(
-                    base_dir + 'models/hypernetworks\\', '')
-                formatted_name = display_name.replace("\\\\", "\\")
+                formatted_name = ""
+                if platform.system() == 'Windows':
+                    formatted_name = file_path.replace(
+                        base_dir + 'models/Stable-diffusion\\', '')
+                else:
+                    formatted_name = file_path.replace(
+                        base_dir + 'models/Stable-diffusion/', '')
 
                 if not found_file:
                     hypernetwork_needing_hash.append({
@@ -122,9 +138,13 @@ def loadAssets():
                     found_file = True
                     info_path = os.path.join(root, file_name + '.md')
 
-                display_name = file_path.replace(
-                    base_dir + 'models/Lora\\', '')
-                formatted_name = display_name.replace("\\\\", "\\")
+                formatted_name = ""
+                if platform.system() == 'Windows':
+                    formatted_name = file_path.replace(
+                        base_dir + 'models/Stable-diffusion\\', '')
+                else:
+                    formatted_name = file_path.replace(
+                        base_dir + 'models/Stable-diffusion/', '')
 
                 if not found_file:
                     lora_needing_hash.append({
@@ -161,9 +181,13 @@ def loadAssets():
                     found_file = True
                     info_path = os.path.join(root, file_name + '.md')
 
-                display_name = file_path.replace(
-                    base_dir + 'embeddings\\', '')
-                formatted_name = display_name.replace("\\\\", "\\")
+                formatted_name = ""
+                if platform.system() == 'Windows':
+                    formatted_name = file_path.replace(
+                        base_dir + 'models/Stable-diffusion\\', '')
+                else:
+                    formatted_name = file_path.replace(
+                        base_dir + 'models/Stable-diffusion/', '')
 
                 if not found_file:
                     embedding_needing_hash.append({
@@ -200,9 +224,13 @@ def loadAssets():
                     found_file = True
                     info_path = os.path.join(root, file_name + '.md')
 
-                display_name = file_path.replace(
-                    base_dir + 'models/VAE\\', '')
-                formatted_name = display_name.replace("\\\\", "\\")
+                formatted_name = ""
+                if platform.system() == 'Windows':
+                    formatted_name = file_path.replace(
+                        base_dir + 'models/Stable-diffusion\\', '')
+                else:
+                    formatted_name = file_path.replace(
+                        base_dir + 'models/Stable-diffusion/', '')
 
                 if not found_file:
                     vae_needing_hash.append({
@@ -305,16 +333,16 @@ print('Checking checkpoints...')
 iterate_missing_list(checkpoint_needing_hash, os.path.join(
     base_dir + '/models/Stable-diffusion'))
 
-print('\nChecking embeddings...')
-iterate_missing_list(embedding_needing_hash,
-                     os.path.join(base_dir + 'embeddings'))
+# print('\nChecking embeddings...')
+# iterate_missing_list(embedding_needing_hash,
+#                      os.path.join(base_dir + 'embeddings'))
 
-print('\nChecking hypernetworks...')
-iterate_missing_list(hypernetwork_needing_hash,
-                     os.path.join(base_dir + 'models/hypernetworks'))
+# print('\nChecking hypernetworks...')
+# iterate_missing_list(hypernetwork_needing_hash,
+#                      os.path.join(base_dir + 'models/hypernetworks'))
 
-print('\nChecking loras...')
-iterate_missing_list(lora_needing_hash, os.path.join(base_dir + 'models/Lora'))
+# print('\nChecking loras...')
+# iterate_missing_list(lora_needing_hash, os.path.join(base_dir + 'models/Lora'))
 
-print('\nChecking vaes...')
-iterate_missing_list(vae_needing_hash, os.path.join(base_dir + 'models/VAE'))
+# print('\nChecking vaes...')
+# iterate_missing_list(vae_needing_hash, os.path.join(base_dir + 'models/VAE'))

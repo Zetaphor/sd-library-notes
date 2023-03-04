@@ -32,13 +32,9 @@ This means you can use rich text formatting in your asset documentation!
 
 ![image](https://user-images.githubusercontent.com/3112763/222820664-edaebedd-09a4-4290-8354-f3141c701a13.png)
 
-
 TODO:
 
-- [ ] Fix paths on Unix systems
 - [ ] Refresh button
 - [ ] Image previews
 - [ ] Move to right side of UI, make an optional setting?
-- [ ] Code cleanup
 - [ ] In-UI editing/saving/creation
-
