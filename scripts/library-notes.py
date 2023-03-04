@@ -56,11 +56,12 @@ class LibraryNotes(scripts.Script):
                         # formatted_name = Path(file_path).relative_to(dir_path)
                         formatted_name = ""
                         if platform.system() == 'Windows':
+                            print(dir_path, file_path)
                             formatted_name = file_path.replace(
-                                base_dir + 'models/Stable-diffusion\\', '')
+                                dir_path + '\\', '')
                         else:
                             formatted_name = file_path.replace(
-                                base_dir + 'models/Stable-diffusion/', '')
+                                dir_path + '/', '')
 
                         note_list.append({
                             'name': formatted_name,
