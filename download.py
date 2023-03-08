@@ -26,7 +26,7 @@ if platform.system() == 'Windows':
     print('Operating system is Windows')
 else:
     print('Operating system is not Windows')
-    base_dir = '/mnt/c/Users/zetap/stable-diffusion-webui/'
+    base_dir = '/home/zetaphor/stable-diffusion-webui/'
 
 
 def loadAssets():
@@ -333,16 +333,16 @@ print('Checking checkpoints...')
 iterate_missing_list(checkpoint_needing_hash, os.path.join(
     base_dir + '/models/Stable-diffusion'))
 
-# print('\nChecking embeddings...')
-# iterate_missing_list(embedding_needing_hash,
-#                      os.path.join(base_dir + 'embeddings'))
+print('\nChecking embeddings...')
+iterate_missing_list(embedding_needing_hash,
+                      os.path.join(base_dir + 'embeddings'))
 
-# print('\nChecking hypernetworks...')
-# iterate_missing_list(hypernetwork_needing_hash,
-#                      os.path.join(base_dir + 'models/hypernetworks'))
+print('\nChecking hypernetworks...')
+iterate_missing_list(hypernetwork_needing_hash,
+                      os.path.join(base_dir + 'models/hypernetworks'))
 
-# print('\nChecking loras...')
-# iterate_missing_list(lora_needing_hash, os.path.join(base_dir + 'models/Lora'))
+print('\nChecking loras...')
+iterate_missing_list(lora_needing_hash, os.path.join(base_dir + 'models/Lora'))
 
-# print('\nChecking vaes...')
-# iterate_missing_list(vae_needing_hash, os.path.join(base_dir + 'models/VAE'))
+print('\nChecking vaes...')
+iterate_missing_list(vae_needing_hash, os.path.join(base_dir + 'models/VAE'))
