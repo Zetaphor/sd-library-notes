@@ -16,18 +16,59 @@ class LibraryNotes(scripts.Script):
     embedding_list = []
     hypernetwork_list = []
     lora_list = []
+    general_note_list = []
 
     checkpoint_path = 'models/Stable-diffusion'
     vae_path = 'models/VAE'
     embedding_path = 'embeddings'
     hypernetwork_path = 'models/hypernetworks'
     lora_path = 'models/Lora'
+    notes_path = 'notes'
 
     def title(self):
         return "Library Notes"
 
     def show(self, is_img2img):
         return scripts.AlwaysVisible
+
+    def get_general_notes(self, dir_path):
+        note_list = []
+
+        if os.path.exists(dir_path):
+            for root, dirs, files in os.walk(dir_path):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    file_name, file_ext = os.path.splitext(file)
+                    if os.path.isfile(os.path.join(root, file_name + '.md')):
+                        file_name + '.md'
+
+                    found_file = False
+                    info_path = ""
+
+                    if os.path.isfile(os.path.join(root, file_name + '.txt')):
+                        found_file = True
+                        info_path = os.path.join(root, file_name + '.txt')
+                    elif os.path.isfile(os.path.join(root, file_name + '.md')):
+                        found_file = True
+                        info_path = os.path.join(root, file_name + '.md')
+
+                    if found_file:
+                        # formatted_name = Path(file_path).relative_to(dir_path)
+                        formatted_name = ""
+                        if platform.system() == 'Windows':
+                            print(dir_path, file_path)
+                            formatted_name = file_path.replace(
+                                dir_path + '\\', '')
+                        else:
+                            formatted_name = file_path.replace(
+                                dir_path + '/', '')
+
+                        note_list.append({
+                            'name': formatted_name,
+                            'filename': info_path
+                        })
+        note_list = sorted(note_list, key=lambda x: x['name'])
+        return note_list
 
     def pull_note_list(self, dir_path, *extension_list):
         note_list = []
@@ -81,12 +122,15 @@ class LibraryNotes(scripts.Script):
             LibraryNotes.embedding_path, ['.bin', '.pt'])
         LibraryNotes.vae_list = self.pull_note_list(
             LibraryNotes.vae_path, ['.bin', '.pt', '.ckpt', '.safetensors'])
+        LibraryNotes.general_note_list = self.get_general_notes(
+            LibraryNotes.notes_path)
 
         # print('VAE', self.vae_list, '\n\n')
         # print('TIs', self.embedding_list, '\n\n')
         # print('checkpoints', self.checkpoint_list, '\n\n')
         # print('hypernetworks', self.hypernetwork_list, '\n\n')
         # print('loras', self.lora_list, '\n\n')
+        print('notes', self.general_note_list, '\n\n')
 
     def dropdown(self, dictList, *args, **kwargs):
         options = []
@@ -100,6 +144,17 @@ class LibraryNotes(scripts.Script):
 
     def add_ui_components(self, *args, **kwargs):
         with gr.Accordion(label="Library Notes", open=False, elem_id=f"{'txt2img' if self.is_txt2img else 'img2img'}_library_notes_accordion"):
+            with gr.Tab(label="General Notes"):
+                with gr.Row():
+                    list_notes = gr.Dropdown(label="Select Note", choices=self.dropdown(
+                        LibraryNotes.general_note_list), interactive=True, elem_id=f"{'txt2img' if self.is_txt2img else 'img2img'}_library_notes_note_selection")
+                with gr.Row():
+                    with gr.Accordion(label="Notes", open=True, elem_id=f"{'txt2img' if self.is_txt2img else 'img2img'}_library_notes_note_info_accordion"):
+                        info_output = gr.Markdown(
+                            "Notes will display here")
+                list_notes.change(
+                    fn=self.show_note_info, inputs=[list_notes], outputs=[info_output])
+
             with gr.Tab(label="Textual Inversions"):
                 with gr.Row():
                     list_embeddings = gr.Dropdown(label="Select Embedding", choices=self.dropdown(
@@ -216,6 +271,15 @@ class LibraryNotes(scripts.Script):
     def show_hypernetwork_info(self, filename):
         output_text = ""
         for item in LibraryNotes.hypernetwork_list:
+            if item['name'] == filename:
+                output_text = self.get_note_data(item['filename'])
+                break
+        txt_update = gr.Markdown.update(value=output_text)
+        return txt_update
+
+    def show_note_info(self, filename):
+        output_text = ""
+        for item in LibraryNotes.general_note_list:
             if item['name'] == filename:
                 output_text = self.get_note_data(item['filename'])
                 break
