@@ -273,10 +273,11 @@ def iterate_missing_list(target_list, asset_path):
                 print('Failed to get info for ' + asset['filename'], '\n')
                 continue
 
-            info_output = f"# [{data['model']['name']}](https://civitai.com/models/{data['modelId']}) ({data['model']['type']})\n\n"
+            info_output = f"# [{data['model']['name']}](https://civitai.com/models/{data['modelId']})\n\n"
+            info_output += f"### Type\n\n{data['model']['type']}\n\n"
 
             if data['baseModel'] is not None:
-                info_output += f"## Base Model: **{data['baseModel']}**\n\n"
+                info_output += f"### Base Model: **{data['baseModel']}**\n\n"
 
             if data['trainedWords'] is not None and len(data['trainedWords']):
                 info_output += '## Trigger Words\n\n'
@@ -305,12 +306,13 @@ def iterate_missing_list(target_list, asset_path):
                         continue
                     if index == 0:
                         info_output += '## Example Prompts\n\n'
-                    example_prompt += f"\n\n### [Prompt #{index + 1}]({image['url']})\n\n"
-                    example_prompt += f"> {image['meta']['prompt']}\n>\n"
+                    example_prompt += f"\n\n\n\n### [Prompt #{index + 1}]({image['url']})\n\n"
+                    example_prompt += f"![]({image['url']})\n\n"
+                    example_prompt += f"### Prompt:\n\n{image['meta']['prompt']}"
                     if 'negativePrompt' in image['meta'] and image['meta']['negativePrompt'] is not None:
-                        example_prompt += f"> Negative prompt: {image['meta']['negativePrompt']}\n>\n"
+                        example_prompt += f"\n\n### Negative Prompt:\n\n{image['meta']['negativePrompt']}"
                     if 'seed' in image['meta'] and image['meta']['seed'] is not None:
-                        example_prompt += f"> Seed: {image['meta']['seed']}, CFG Scale: {image['meta']['cfgScale']}, Steps: {image['meta']['steps']}, Sampler{image['meta']['steps']}"
+                        example_prompt += f" \n\nSeed: {image['meta']['seed']}, CFG Scale: {image['meta']['cfgScale']}, Steps: {image['meta']['steps']}, Sampler: {image['meta']['sampler']}"
                     if 'Clip skip' in image['meta']:
                         example_prompt += f", Clip Skip: {image['meta']['Clip skip']}"
                     example_model_data = None
@@ -318,7 +320,7 @@ def iterate_missing_list(target_list, asset_path):
                         example_model_data = getJson(
                             image['meta']['Model hash'])
                     if (example_model_data is not None):
-                        example_prompt += f">\n>\n> Model: [{example_model_data['model']['name']}/{example_model_data['name']}](https://civitai.com/models/{example_model_data['modelId']}) \n\n"
+                        example_prompt += f"\n\n Model: [{example_model_data['model']['name']}/{example_model_data['name']}](https://civitai.com/models/{example_model_data['modelId']}) \n\n"
                     info_output += example_prompt
 
             info_output = info_output.rstrip("\n")
@@ -335,11 +337,11 @@ iterate_missing_list(checkpoint_needing_hash, os.path.join(
 
 print('\nChecking embeddings...')
 iterate_missing_list(embedding_needing_hash,
-                      os.path.join(base_dir + 'embeddings'))
+                     os.path.join(base_dir + 'embeddings'))
 
 print('\nChecking hypernetworks...')
 iterate_missing_list(hypernetwork_needing_hash,
-                      os.path.join(base_dir + 'models/hypernetworks'))
+                     os.path.join(base_dir + 'models/hypernetworks'))
 
 print('\nChecking loras...')
 iterate_missing_list(lora_needing_hash, os.path.join(base_dir + 'models/Lora'))

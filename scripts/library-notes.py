@@ -130,7 +130,7 @@ class LibraryNotes(scripts.Script):
         # print('checkpoints', self.checkpoint_list, '\n\n')
         # print('hypernetworks', self.hypernetwork_list, '\n\n')
         # print('loras', self.lora_list, '\n\n')
-        print('notes', self.general_note_list, '\n\n')
+        # print('notes', self.general_note_list, '\n\n')
 
     def dropdown(self, dictList, *args, **kwargs):
         options = []
