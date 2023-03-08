@@ -1,6 +1,6 @@
 # sd-library-notes
 
-Extension for Automatic1111 Stable Diffusion WebUI to display information from text or markdown files for all of your custom assets.
+Extension for Automatic1111 Stable Diffusion WebUI to display information from text or markdown files for all of your custom assets. It also supports general notes so you can easily reference your stable diffusion documentation.
 
 ## About
 
@@ -22,6 +22,10 @@ The following asset types are supported:
 
 Any content loaded from the notes file will be rendered with full markdown.
 This means you can use rich text formatting in your asset documentation!
+
+### General Notes
+
+The extension also includes a general notes section, which can be accessed by selecting "General Notes" from the asset type dropdown menu. The extension will search for markdown or text files in the `notes` folder in your Automatic1111 installation directory, and any files found will appear in the dropdown menu below the asset type selection.
 
 ## Installation
 
