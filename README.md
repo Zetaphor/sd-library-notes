@@ -1,7 +1,5 @@
 # sd-library-notes
 
-## Note: This is broken with the latest release of Automatic1111 on March 25'th. This update broke a LOT of extensions. I'm working on a fix. [See this reddit post for more details](https://www.reddit.com/r/StableDiffusion/comments/121kqkd/psa_hold_up_with_updating_automatic1111_for_now/).
-
 Extension for Automatic1111 Stable Diffusion WebUI to display information from text or markdown files for all of your custom assets. It also supports general notes so you can easily reference your stable diffusion documentation.
 
 ## About
